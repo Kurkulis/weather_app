@@ -2,6 +2,7 @@ def readfile(file):
     lines = []
     city = file.rsplit(".", 1)[0].capitalize()
     with open(file, "r") as f:
+        f.readline()
         data = f.readlines()
         for line in data:
             lines += line.strip().split(" ")
@@ -17,6 +18,23 @@ def getDate(date):
     print("The lowest temperature was",
           data[3], "and the highest temperature was", data[4])
     print("There was", data[1], "mm rain", end="")
+
+
+def calculateAverage():
+    temps = 0
+    lows = 0
+    highs = 0
+    for row in readfile.weatherData:
+        data = str(row).strip("[]").split(";")
+        temps = temps + float(data[2])
+        lows = lows + float(data[3])
+        highs = highs + float(data[4])
+    avg_temp = temps/25
+    avg_low = lows/25
+    avg_high = highs/25
+    print("The average temperature for the 25 day period was", round(avg_temp, 1))
+    print("The average lowest temperature was", round(avg_low, 1))
+    print("The average highest temperature was", round(avg_high, 1), end="")
 
 
 while True:
@@ -38,5 +56,8 @@ while True:
     elif choice == "2":
         date = input("Give a date (dd.mm): ")
         getDate(date)
+
+    elif choice == "3":
+        calculateAverage()
 
     print("\n")
