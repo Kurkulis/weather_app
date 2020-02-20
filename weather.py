@@ -37,6 +37,34 @@ def calculateAverage():
     print("The average highest temperature was", round(avg_high, 1), end="")
 
 
+def print_temperature_line(day, month, temp):
+
+    print(day + "." + month + " ", end="")
+
+    print("   "*(temp+5) + "-", end="")
+
+    print()
+
+
+def print_temperature_axis():
+    print("      ", end="")
+    for i in range(-5, 16):
+        print("{:02d} ".format(i), end="")
+
+
+def createScatterplot():
+    for row in readfile.weatherData:
+        data = str(row).strip("[]").split(";")
+        date = data[0]
+        day = date[9:11]
+        month = date[6:8]
+        temp = float(data[2])
+        temp = round(temp)
+        temp = int(temp)
+        print_temperature_line(day, month, temp)
+    print_temperature_axis()
+
+
 while True:
     print("ACME WEATHER DATA APP")
     print("1) Choose weather data file")
@@ -59,5 +87,8 @@ while True:
 
     elif choice == "3":
         calculateAverage()
+
+    elif choice == "4":
+        createScatterplot()
 
     print("\n")
