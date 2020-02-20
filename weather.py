@@ -10,7 +10,7 @@ def readfile(file):
 
 
 def getDate(date):
-    day = date[0:2]+"-"+date[3:5]
+    day = date[3:5]+"-"+date[0:2]
     data = [s for s in readfile.weatherData if day in s]
     data = str(data).strip("[]").split(";")
     print("The weather on", date, "was on average", data[2], "centigrade")
