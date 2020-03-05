@@ -19,11 +19,11 @@ def main():
               data[3], "and the highest temperature was", data[4])
         print("There was", data[1], "mm rain", end="")
 
-    def calculateAverage():
+    def calculateAverage(data):
         temps = 0
         lows = 0
         highs = 0
-        for row in readfile.weatherData:
+        for row in data:
             data = str(row).strip("[]").split(";")
             temps = temps + float(data[2])
             lows = lows + float(data[3])
@@ -48,8 +48,8 @@ def main():
         for i in range(-5, 16):
             print("{:02d} ".format(i), end="")
 
-    def createScatterplot():
-        for row in readfile.weatherData:
+    def createScatterplot(data):
+        for row in data:
             data = str(row).strip("[]").split(";")
             date = data[0]
             day = date[9:11]
@@ -81,10 +81,10 @@ def main():
             getDate(date)
 
         elif choice == "3":
-            calculateAverage()
+            calculateAverage(readfile.weatherData)
 
         elif choice == "4":
-            createScatterplot()
+            createScatterplot(readfile.weatherData)
 
         print("\n")
 
