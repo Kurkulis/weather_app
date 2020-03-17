@@ -1,5 +1,5 @@
 def main():
-    def readfile(file):
+    def readFile(file):
         lines = []
         city = file.rsplit(".", 1)[0].capitalize()
         with open(file, "r") as f:
@@ -8,11 +8,11 @@ def main():
             for line in data:
                 lines += line.strip().split(" ")
         print("Loaded weather data from", city, end="")
-        readfile.weatherData = lines
+        return lines
 
     def getDate(date):
         day = date[3:5]+"-"+date[0:2]
-        data = [s for s in readfile.weatherData if day in s]
+        data = [s for s in weatherData if day in s]
         data = str(data).strip("[]").split(";")
         print("The weather on", date, "was on average", data[2], "centigrade")
         print("The lowest temperature was",
@@ -74,17 +74,17 @@ def main():
 
         elif choice == "1":
             file = input("Give name of the file: ")
-            readfile(file)
+            weatherData = readFile(file)
 
         elif choice == "2":
             date = input("Give a date (dd.mm): ")
             getDate(date)
 
         elif choice == "3":
-            calculateAverage(readfile.weatherData)
+            calculateAverage(weatherData)
 
         elif choice == "4":
-            createScatterplot(readfile.weatherData)
+            createScatterplot(weatherData)
 
         print("\n")
 
